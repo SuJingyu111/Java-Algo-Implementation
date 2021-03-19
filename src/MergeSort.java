@@ -49,11 +49,7 @@ public class MergeSort {
     }
 
     public static void main (String[] args) {
-        Integer[] testArray = {1, 2, 15, 4, 6, 5, 19, 11, 9, 26, 10, 24, 14};
-        Integer[] result = mergeSort(testArray);
-        System.out.println(testArray.length + " ");
-        System.out.println(result.length + " ");
-        printArray(result);
+        SortTest.test(MergeSort.class);
     }
 }
 

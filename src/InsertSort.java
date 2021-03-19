@@ -19,11 +19,15 @@ public class InsertSort {
     }
 
     public static void main (String[] args) {
+        /*
         Integer[] array = {5, 7, 1, 18, 25, 56, 17, 3};
         array = sort(array);
         for (Integer e:array) {
             System.out.print(e);
             System.out.print(' ');
         }
+        */
+        SortTest.test(InsertSort.class);
+
     }
 }
