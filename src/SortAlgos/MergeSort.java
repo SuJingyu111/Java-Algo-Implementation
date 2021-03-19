@@ -1,3 +1,5 @@
+package SortAlgos;
+
 import java.util.*;
 import java.io.*;
 

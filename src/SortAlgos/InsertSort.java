@@ -1,3 +1,5 @@
+package SortAlgos;
+
 public class InsertSort {
     private static Integer[] sort(Integer[] array) {
         for (int j = 0; j <= array.length - 1; j++) {
