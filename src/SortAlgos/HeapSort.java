@@ -5,7 +5,6 @@ import java.util.Arrays;
 public class HeapSort {
     protected MaxHeap buildMaxHeap(Integer[] array) {
         MaxHeap maxHeap =  new MaxHeap(array);
-        System.out.println(Arrays.toString(maxHeap.getHeap()));
         return maxHeap;
     }
 
@@ -21,12 +20,6 @@ public class HeapSort {
     }
 
     public static void main(String[] args) {
-        Integer[] testArray = {15, 6, 7, 19, 23, 17, 36};
-        HeapSort hs = new HeapSort();
-        Integer[] resultArray = hs.heapSort(testArray);
-        for (Integer i : resultArray) {
-            System.out.print(i + " ");
-        }
         SortTest.test(HeapSort.class);
     }
 }
