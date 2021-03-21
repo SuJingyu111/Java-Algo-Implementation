@@ -18,8 +18,6 @@ public class Test {
     }
 
     public static void main (String[] args) {
-        Test thisTest = new Test();
-        thisTest.test(1);
-        thisTest.test(2);
+        System.out.println(3/2);
     }
 }

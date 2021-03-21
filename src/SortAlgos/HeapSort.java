@@ -3,9 +3,9 @@ package SortAlgos;
 import java.util.Arrays;
 
 public class HeapSort {
+
     protected MaxHeap buildMaxHeap(Integer[] array) {
-        MaxHeap maxHeap =  new MaxHeap(array);
-        return maxHeap;
+        return new MaxHeap(array);
     }
 
     public Integer[] heapSort(Integer[] array) {
@@ -23,6 +23,7 @@ public class HeapSort {
         SortTest.test(HeapSort.class);
     }
 }
+
 
 class MaxHeap{
     public int heapSize;

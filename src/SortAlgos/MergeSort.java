@@ -43,13 +43,6 @@ public class MergeSort {
         return mergedArray;
     }
 
-    private static <T> void printArray (T[] array) {
-        for (T t : array) {
-            System.out.print(t + " ");
-        }
-        System.out.println();
-    }
-
     public static void main (String[] args) {
         SortTest.test(MergeSort.class);
     }
