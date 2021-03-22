@@ -20,9 +20,7 @@ public class QuickSort {
     }
 
     private static int partition(Integer[] array, int left, int right) {
-        System.out.println("--------------------");
         int q = array[right];
-        System.out.println(q);
         int pos = left - 1;
         for (int j = left; j <= right - 1; j++) {
             if (array[j] < q) {
@@ -31,7 +29,6 @@ public class QuickSort {
             }
         }
         swap(array, pos + 1, right);
-        System.out.println("--------------------");
         return pos + 1;
     }
 
