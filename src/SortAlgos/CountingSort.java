@@ -17,9 +17,9 @@ public class CountingSort {
         for (int i = 1; i < countingArray.length; i++) {
             countingArray[i] += countingArray[i - 1];
         }
-        for (int i = 0; i < array.length; i++ ) {
-            resultArray[countingArray[array[i]]] = array[i];
-            countingArray[array[i]] -= 1;
+        for (Integer integer : array) {
+            resultArray[countingArray[integer]] = integer;
+            countingArray[integer] -= 1;
         }
         return resultArray;
     }
