@@ -1,13 +1,15 @@
 package SortAlgos;
 
+import SelectAlgos.RandomizedSelect;
+
 import java.util.Arrays;
 import java.util.Random;
 
-public class RandomizedQuickSort extends QuickSort{
+public class RandomizedQuickSort {
 
     public static Integer[] randomizedQuickSort(Integer[] array) {
         int q = partition(array, 0, array.length - 1);
-        System.out.println(Arrays.toString(array));
+        System.out.println(Arrays.toString(array) + " " + q);
         quickSortRecurse(array, 0, q - 1);
         quickSortRecurse(array, q + 1, array.length - 1);
         return array;
@@ -21,8 +23,8 @@ public class RandomizedQuickSort extends QuickSort{
         }
     }
 
-    private static int partition(Integer[] array, int left, int right) {
-        int rPos = new Random().nextInt();
+    public static int partition(Integer[] array, int left, int right) {
+        int rPos = new Random().nextInt(right - left + 1) + left;
         swap(array, rPos, right);
         int q = array[right];
         int pos = left - 1;
@@ -43,9 +45,9 @@ public class RandomizedQuickSort extends QuickSort{
     }
 
     public static void main(String[] args) {
-        Integer[] array = {5, 234, 34, 67, 123, 76, 8, 38};
-        QuickSort.quickSort(array);
+        Integer[] array = {4, 49, 62, 70, 46, 75, 69, 93, 17, 45};
+        RandomizedQuickSort.randomizedQuickSort(array);
         System.out.println(Arrays.toString(array));
-        SortTest.test(QuickSort.class);
+        SortTest.test(RandomizedQuickSort.class);
     }
 }
