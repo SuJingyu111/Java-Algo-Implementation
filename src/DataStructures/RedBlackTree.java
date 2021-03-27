@@ -91,24 +91,98 @@ public class RedBlackTree {
 
     public void delete(RBTNode z) {
         RBTNode y = z;
+        RBTNode x;
         Color yOriginalColor = y.color;
         if (z.left == nil) {
-            RBTNode x = z. right;
+            x = z. right;
             transplant(z, x);
         }
         else if (z.right == nil) {
-            RBTNode x = z.left;
+            x = z.left;
             transplant(z, x);
         }
-        //TODO
+        else {
+            y = minimum(z.right);
+            yOriginalColor = y.color;
+            x = y.right;
+            if (y.parent == z) {
+                x.parent = y;
+            }
+            else
+                transplant(y, y.right);
+                y.right = z.right;
+                y.right.parent = y;
+            transplant(z, y);
+            y.left = z.left;
+            y.left.parent = y;
+            y.color = z.color;
+        }
+        if (yOriginalColor == Color.BLACK) {
+            deleteFixUp(x);
+        }
     }
 
-    private RBTNode minimum(){
-        //TODO
+    private RBTNode minimum(RBTNode root){
+        RBTNode cursor = root;
+        while (cursor.left != nil) {
+            cursor = cursor.left;
+        }
+        return cursor;
     }
 
-    private void deleteFixUp() {
-        //TODO
+    private void deleteFixUp(RBTNode x) {
+        while (x != this.root && x.color == Color.BLACK) {
+            RBTNode w;
+            if (x == x.parent.left) {
+                w = x.parent.right;
+                if (w.color == Color.RED) {
+                    w.color = Color.BLACK;
+                    x.parent.color = Color.RED;
+                    leftRotate(x.parent);
+                    w = x.parent.right;
+                }
+                if (w.left.color == Color.BLACK && w.right.color == Color.BLACK) {
+                    w.color = Color.RED;
+                    x = x.parent;
+                }
+                else if (w.right.color == Color.BLACK) {
+                    w.left.color = Color.BLACK;
+                    w.color = Color.RED;
+                    rightRotate(w);
+                    w = x.parent.right;
+                    w.color = x.parent.color;
+                    x.parent.color = Color.BLACK;
+                    w.right.color = Color.BLACK;
+                    leftRotate(x.parent);
+                    x = this.root;
+                }
+            }
+            else {
+                w = x.parent.left;
+                if (w.color == Color.RED) {
+                    w.color = Color.BLACK;
+                    x.parent.color = Color.RED;
+                    rightRotate(x.parent);
+                    w = x.parent.left;
+                }
+                if (w.right.color == Color.BLACK && w.left.color == Color.BLACK) {
+                    w.color = Color.RED;
+                    x = x.parent;
+                }
+                else if (w.left.color == Color.BLACK) {
+                    w.right.color = Color.BLACK;
+                    w.color = Color.RED;
+                    leftRotate(w);
+                    w = x.parent.left;
+                    w.color = x.parent.color;
+                    x.parent.color = Color.BLACK;
+                    w.left.color = Color.BLACK;
+                    rightRotate(x.parent);
+                    x = this.root;
+                }
+            }
+        }
+        x.color = Color.BLACK;
     }
 
     private void transplant(RBTNode u, RBTNode v) {
@@ -124,8 +198,33 @@ public class RedBlackTree {
     }
 
     public String toString() {
-        //TODO
-        return "";
+        StringBuilder sb = new StringBuilder();
+        if (this.root == nil) {
+            sb.append(" nil ");
+            return sb.toString();
+        }
+        else {
+            String s = " (" + Integer.toString(root.val) + " " + root.color + ") ";
+            sb.append(s);
+            sb.append(recurse(root.left));
+            sb.append(recurse(root.right));
+        }
+        return sb.toString();
+    }
+
+    private StringBuilder recurse(RBTNode root) {
+        StringBuilder sb = new StringBuilder();
+        if (root == nil) {
+            sb.append(" nil ");
+            return sb;
+        }
+        else {
+            String s = " (" + Integer.toString(root.val) + " " + root.color + ") ";
+            sb.append(s);
+            sb.append(recurse(root.left));
+            sb.append(recurse(root.right));
+        }
+        return sb;
     }
 
     private void leftRotate(RBTNode node) {
